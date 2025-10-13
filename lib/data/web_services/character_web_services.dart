@@ -17,7 +17,7 @@ class CharacterWebServices {
     dio = Dio(baseOptions);
   }
 
-  Future<List<CharacterModel>> getAllCharacter() async {
+  Future<List<dynamic>> getAllCharacter() async {
     try {
       Response response = await dio.get('/character');
       print(response.data.toString());
