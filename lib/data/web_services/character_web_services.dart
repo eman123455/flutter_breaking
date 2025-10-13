@@ -1,8 +1,5 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter_breaking/constants/strings.dart';
-import 'package:flutter_breaking/data/models/character_model/character_model.dart';
 
 class CharacterWebServices {
   late Dio dio;
