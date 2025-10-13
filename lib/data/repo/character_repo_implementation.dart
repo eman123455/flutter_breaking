@@ -11,6 +11,11 @@ class CharacterRepoImplementation implements CharacterRepo {
   Future<List<CharacterModel>> getAllCharacters() async {
     var data = await characterWebServices.getAllCharacter();
 
+    // List<CharacterModel> characterList = [];
+    // for (var item in data) {
+    //   characterList.add(CharacterModel.fromJson(item));
+    // }
+
     return data.map((character) => CharacterModel.fromJson(character)).toList();
   }
 }
