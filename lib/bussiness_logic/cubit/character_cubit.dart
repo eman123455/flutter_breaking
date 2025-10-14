@@ -8,7 +8,8 @@ part 'character_state.dart';
 class CharacterCubit extends Cubit<CharacterState> {
   final CharacterRepoImplementation characterRepoImplementation;
   late List<CharacterModel> characters;
-  CharacterCubit(this.characterRepoImplementation) : super(CharacterInitial());
+  CharacterCubit( this.characterRepoImplementation)
+      : super(CharacterInitial());
 
 //   Future<List<CharacterModel>> getAllCharacters() async {
 //     var ch =
@@ -21,14 +22,13 @@ class CharacterCubit extends Cubit<CharacterState> {
 //   }
 // }
 
-//important 
+//important
   Future<void> getAllCharacters() async {
     emit(CharacterLoding());
 
     try {
       var result = await characterRepoImplementation.getAllCharacters();
       emit(CharacterLoaded(characters: result));
-
     } catch (e) {
       emit(CharacterFailed(errMsg: e.toString()));
     }
