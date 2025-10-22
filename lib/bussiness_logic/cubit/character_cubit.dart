@@ -1,14 +1,14 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_breaking/data/models/character_model/character_model.dart';
-import 'package:flutter_breaking/data/repo/character_repo_implementation.dart';
+import 'package:flutter_breaking/data/repo/character_repo.dart';
 import 'package:meta/meta.dart';
 
 part 'character_state.dart';
 
 class CharacterCubit extends Cubit<CharacterState> {
-  final CharacterRepoImplementation characterRepoImplementation;
+  final CharacterRepo characterRepo;
   late List<CharacterModel> characters;
-  CharacterCubit( this.characterRepoImplementation)
+  CharacterCubit( this.characterRepo)
       : super(CharacterInitial());
 
 //   Future<List<CharacterModel>> getAllCharacters() async {
@@ -24,10 +24,10 @@ class CharacterCubit extends Cubit<CharacterState> {
 
 //important
   Future<void> getAllCharacters() async {
-    emit(CharacterLoding());
+    emit(CharacterLoading());
 
     try {
-      var result = await characterRepoImplementation.getAllCharacters();
+      var result = await characterRepo.getAllCharacters();
       emit(CharacterLoaded(characters: result));
     } catch (e) {
       emit(CharacterFailed(errMsg: e.toString()));

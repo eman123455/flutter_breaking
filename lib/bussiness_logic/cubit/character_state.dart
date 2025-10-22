@@ -10,7 +10,7 @@ final class CharacterLoaded extends CharacterState {
   CharacterLoaded({required this.characters});
 }
 
-final class CharacterLoding extends CharacterState {}
+final class CharacterLoading extends CharacterState {}
 
 final class CharacterFailed extends CharacterState {
   final String errMsg;
