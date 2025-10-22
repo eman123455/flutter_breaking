@@ -10,14 +10,14 @@ import 'package:flutter_breaking/utils/service_locator.dart';
 import 'package:get_it/get_it.dart';
 
 class AppRouter {
-  late CharacterRepoImplementation characterRepoImplementation;
-  static late  CharacterCubit characterCubit;
+  // late CharacterRepoImplementation characterRepoImplementation;
+  // static late  CharacterCubit characterCubit;
 
-  AppRouter() {
-    characterRepoImplementation =
-        CharacterRepoImplementation(CharacterWebServices());
-    characterCubit = CharacterCubit(characterRepoImplementation);
-  }
+  // AppRouter() {
+  //   characterRepoImplementation =
+  //       CharacterRepoImplementation(CharacterWebServices());
+  //   characterCubit = CharacterCubit(characterRepoImplementation);
+  // }
 
   static Route? generateapproute(RouteSettings setting) {
     switch (setting.name) {
@@ -26,7 +26,7 @@ class AppRouter {
             builder: (_) => BlocProvider(
                     create: (context) => CharacterCubit(
                     getIt.get<CharacterRepoImplementation>()
-                  ),
+                  )..getAllCharacters(),
                   child: CharactersScreen(),
                 ));
 
