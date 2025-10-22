@@ -47,7 +47,7 @@ class CharacterModel extends Equatable {
           ? null
           : Location.fromJson(json['location'] as Map<String, dynamic>),
       image: json['image'] as String?,
-      episode: json['episode'] as List<String>?,
+      episode: (json['episode'] as List<dynamic>?)?.cast<String>(),
       url: json['url'] as String?,
       created: json['created'] == null
           ? null
