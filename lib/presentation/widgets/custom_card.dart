@@ -17,12 +17,20 @@ class CustomCard extends StatelessWidget {
       child: Stack(
         alignment: AlignmentDirectional.bottomCenter,
         children: [
-          Image.network(
-            characterModel.image??'',
-            fit: BoxFit.cover,
-            height: double.infinity,
-            width: double.infinity,
-          ),
+
+          FadeInImage.assetNetwork(
+             placeholder: 'assets/images/Loading Dots In Yellow.gif',
+             image:characterModel.image!,
+             fit: BoxFit.cover,
+             height: double.infinity,
+             width: double.infinity,
+             ),
+          //   Image.network(
+          //   characterModel.image??'',
+          //   fit: BoxFit.cover,
+          //   height: double.infinity,
+          //   width: double.infinity,
+          // ),
           Positioned(
             left: 0,
             right: 0,
