@@ -18,3 +18,11 @@ final class CharacterFailed extends CharacterState {
   CharacterFailed({required this.errMsg});
   
 }
+
+final class SearchedCharactersLoad extends CharacterState {
+  List<CharacterModel> searcheCharacters;
+  SearchedCharactersLoad({required this .searcheCharacters});
+  
+}
+
+

@@ -3,11 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_breaking/bussiness_logic/cubit/character_cubit.dart';
 import 'package:flutter_breaking/constants/strings.dart';
 import 'package:flutter_breaking/data/repo/character_repo_implementation.dart';
-import 'package:flutter_breaking/data/web_services/character_web_services.dart';
 import 'package:flutter_breaking/presentation/screens/character_details.dart';
 import 'package:flutter_breaking/presentation/screens/characters_screen.dart';
 import 'package:flutter_breaking/utils/service_locator.dart';
-import 'package:get_it/get_it.dart';
+
 
 class AppRouter {
   // late CharacterRepoImplementation characterRepoImplementation;
