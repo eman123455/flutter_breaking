@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_breaking/bussiness_logic/cubit/character_cubit.dart';
 import 'package:flutter_breaking/constants/strings.dart';
+import 'package:flutter_breaking/data/models/character_model/character_model.dart';
 import 'package:flutter_breaking/data/repo/character_repo_implementation.dart';
 import 'package:flutter_breaking/presentation/screens/character_details.dart';
 import 'package:flutter_breaking/presentation/screens/characters_screen.dart';
 import 'package:flutter_breaking/utils/service_locator.dart';
-
 
 class AppRouter {
   // late CharacterRepoImplementation characterRepoImplementation;
@@ -23,14 +23,15 @@ class AppRouter {
       case characterScreen:
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
-                    create: (context) => CharacterCubit(
-                    getIt.get<CharacterRepoImplementation>()
-                  )..getAllCharacters(),
+                  create: (context) =>
+                      CharacterCubit(getIt.get<CharacterRepoImplementation>())
+                        ..getAllCharacters(),
                   child: CharactersScreen(),
                 ));
 
       case characterDetails:
-        return MaterialPageRoute(builder: (_) => CharacterDetails());
+        final character = setting.arguments as CharacterModel;
+        return MaterialPageRoute(builder: (_) => CharacterDetails( character:  character,));
     }
   }
 }

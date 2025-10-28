@@ -4,12 +4,11 @@ import 'package:flutter_breaking/utils/service_locator.dart';
 
 void main() {
   startupServicesLocator();
-  runApp( BeakingBadApp());
+  runApp( const BeakingBadApp());
 }
 
 class BeakingBadApp extends StatelessWidget {
-
-
+  const BeakingBadApp({super.key});
   @override
   Widget build(BuildContext context) {
     return  const MaterialApp(
