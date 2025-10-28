@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_breaking/constants/my_colors.dart';
 import 'package:flutter_breaking/data/models/character_model/character_model.dart';
 
 class CustomSliverAppBar extends StatelessWidget {
@@ -7,14 +8,17 @@ class CustomSliverAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  SliverAppBar(
-      // backgroundColor:MyColors.myGrey,
+      backgroundColor:MyColors.myGrey,
       expandedHeight: 500,
       pinned: true,
       stretch: true,
+      iconTheme: const IconThemeData(
+        color: MyColors.myWhite
+      ),
       flexibleSpace: FlexibleSpaceBar(
         title: Text('${character.name}',
-        style: TextStyle(
-          color: Colors.white
+        style: const TextStyle(
+          color:MyColors.myWhite
         ),
         ),
         background: Hero(
