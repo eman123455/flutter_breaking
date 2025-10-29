@@ -28,7 +28,7 @@ This separation allows easier testing and clearer responsibilities.
 
 ## Screenshots
 
-Home, Detail, Search feature and Offline mode — smaller and side-by-side:
+Home, Detail, Search feature and Offline mode 
 
 <table>
 	<tr>
