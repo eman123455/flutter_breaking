@@ -13,9 +13,9 @@ Cross-platform Flutter application that fetches and displays character data with
 - Dio (HTTP client)
 - Bloc / Cubit (state management)
 - get_it (dependency injection)
-- Flutter offline package  
+- Flutter offline package
 
-## Architecture 
+## Architecture
 
 Layered architecture used in this project:
 
@@ -26,24 +26,17 @@ Layered architecture used in this project:
 
 This separation allows easier testing and clearer responsibilities.
 
-## Screenshots 
+## Screenshots
 
-Home :
+Home, Detail, Search feature and Offline mode — smaller and side-by-side:
 
-![Home screenshot](assets/images/3.jpg)
-
-Detail :
-
-![Detail screenshot](assets/images/2.jpg)
-
-search feature : 
-
-![search screenshot](assets/images/1.jpg)
- offline mode : 
-
-![offline mode screenshot](assets/images/4.jpg)
-
-
-
-
-
+<table>
+	<tr>
+		<td><img src="assets/images/3.jpg" width="360" alt="Home screenshot"/></td>
+		<td style="padding-left:12px"><img src="assets/images/2.jpg" width="360" alt="Detail screenshot"/></td>
+	</tr>
+	<tr>
+		<td style="padding-top:8px"><img src="assets/images/1.jpg" width="360" alt="Search screenshot"/></td>
+		<td style="padding-left:12px; padding-top:8px"><img src="assets/images/4.jpg" width="360" alt="Offline mode screenshot"/></td>
+	</tr>
+</table>
