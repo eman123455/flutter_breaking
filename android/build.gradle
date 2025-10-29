@@ -5,6 +5,19 @@ allprojects {
     }
 }
 
+// Provide fallback Android SDK values so plugin projects (in pub cache)
+// that look for rootProject.ext.flutter or compileSdkVersion can find them.
+ext.flutter = [
+    // Match a modern Android SDK used by Flutter projects. Adjust if your
+    // project targets a different SDK.
+    compileSdkVersion: 33,
+    minSdkVersion: 21,
+    targetSdkVersion: 33,
+    ndkVersion: "21.4.7075529",
+    versionCode: 1,
+    versionName: "1.0.0"
+]
+
 rootProject.buildDir = "../build"
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"

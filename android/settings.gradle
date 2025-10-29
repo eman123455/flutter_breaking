@@ -19,7 +19,10 @@ pluginManagement {
 plugins {
     id "dev.flutter.flutter-plugin-loader" version "1.0.0"
     id "com.android.application" version "8.1.0" apply false
-    id "org.jetbrains.kotlin.android" version "1.8.22" apply false
+    // Bump Kotlin plugin to match Kotlin metadata used by some pub.dev
+    // plugins (network_info_plus/connectivity_plus). network_info_plus
+    // ships Kotlin metadata version 2.2.0, so use Kotlin Gradle plugin 2.2.0.
+    id "org.jetbrains.kotlin.android" version "2.2.0" apply false
 }
 
 include ":app"

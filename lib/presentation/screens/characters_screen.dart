@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_breaking/bussiness_logic/cubit/character_cubit.dart';
 import 'package:flutter_breaking/constants/my_colors.dart';
 import 'package:flutter_breaking/presentation/widgets/characters_list.dart';
+import 'package:flutter_breaking/presentation/widgets/offline_widget.dart';
+import 'package:flutter_offline/flutter_offline.dart';
 
 // ignore: must_be_immutable
 class CharactersScreen extends StatefulWidget {
@@ -13,74 +15,73 @@ class CharactersScreen extends StatefulWidget {
 }
 
 class _CharactersScreenState extends State<CharactersScreen> {
-
   final TextEditingController searchEditingController = TextEditingController();
-    Widget searchTextField() {
-      return TextField(
-        controller: searchEditingController,
-        cursorColor: MyColors.myGrey,
-        decoration: const InputDecoration(
-          border: InputBorder.none,
-          hintText: 'Find a character....',
-          hintStyle: TextStyle(
-            color: MyColors.myGrey,
-            fontSize: 24,
-          ),
-        ),
-        style: const TextStyle(
+  Widget searchTextField() {
+    return TextField(
+      controller: searchEditingController,
+      cursorColor: MyColors.myGrey,
+      decoration: const InputDecoration(
+        border: InputBorder.none,
+        hintText: 'Find a character....',
+        hintStyle: TextStyle(
           color: MyColors.myGrey,
-          fontSize: 18,
+          fontSize: 24,
         ),
-        onChanged: (value) {
-          (context).read<CharacterCubit>().getSearchedCharacters(value);
-        },
-      );
-    }
+      ),
+      style: const TextStyle(
+        color: MyColors.myGrey,
+        fontSize: 18,
+      ),
+      onChanged: (value) {
+        (context).read<CharacterCubit>().getSearchedCharacters(value);
+      },
+    );
+  }
 
-    void _clearSearch() {
-      searchEditingController.clear();
-      (context).read<CharacterCubit>().clearSearch();
-    }
+  void _clearSearch() {
+    searchEditingController.clear();
+    (context).read<CharacterCubit>().clearSearch();
+  }
 
-    void _stopSearching() {
-        _clearSearch();
-    }
+  void _stopSearching() {
+    _clearSearch();
+  }
 
-    void _startSearching() {
-      ModalRoute.of(context)!
-          .addLocalHistoryEntry(LocalHistoryEntry(onRemove: _stopSearching));
+  void _startSearching() {
+    ModalRoute.of(context)!
+        .addLocalHistoryEntry(LocalHistoryEntry(onRemove: _stopSearching));
 
-      
     context.read<CharacterCubit>().is_Searching = true;
-    }
+  }
 
-    List<Widget> appBarActions() {
-         final cubit = context.read<CharacterCubit>();
-      if (cubit.is_Searching) {
-        return [
-          IconButton(
-              onPressed: () {
-                _clearSearch();
-                Navigator.pop(context);
-              },
-              icon: const Icon(
-                Icons.clear,
-                color: MyColors.myGrey,
-              )),
-        ];
-      } else {
-        return [
-          IconButton(
-              onPressed: () {
-                _startSearching();
-              },
-              icon: const Icon(
-                Icons.search,
-                color: MyColors.myGrey,
-              )),
-        ];
-      }
+  List<Widget> appBarActions() {
+    final cubit = context.read<CharacterCubit>();
+    if (cubit.is_Searching) {
+      return [
+        IconButton(
+            onPressed: () {
+              _clearSearch();
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.clear,
+              color: MyColors.myGrey,
+            )),
+      ];
+    } else {
+      return [
+        IconButton(
+            onPressed: () {
+              _startSearching();
+            },
+            icon: const Icon(
+              Icons.search,
+              color: MyColors.myGrey,
+            )),
+      ];
     }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,7 +97,22 @@ class _CharactersScreenState extends State<CharactersScreen> {
                   ),
                 ),
           actions: appBarActions()),
-      body: const CharactersList(),
+      body: OfflineBuilder(
+        connectivityBuilder: (
+          BuildContext context,
+          List<ConnectivityResult> connectivity,
+          Widget child,
+        ) {
+          final bool connected =
+              !connectivity.contains(ConnectivityResult.none);
+          if (connected) {
+            return const CharactersList();
+          } else {
+            return const OfflineWidget();
+          } 
+        },
+        child:  const CircularProgressIndicator(color: MyColors.myYellow,),
+      ),
     );
   }
 }

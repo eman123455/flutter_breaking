@@ -35,7 +35,8 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
-  flutter_offline: ^5.0.0
+  flutter_offline: ^6.0.0
+  connectivity_plus: ^7.0.0
   get_it: ^8.2.0
 
 dev_dependencies:
